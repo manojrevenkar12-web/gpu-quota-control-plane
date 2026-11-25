@@ -73,3 +73,55 @@ Clients reserving one small cluster at once, retried requests, steps interleaved
 | 11 | 57.3% → **64.8%** | 16 → **10** | 100.00% → **99.96%** | €1,407k → **€1,549k** |
 | 12 | 61.5% → **65.8%** | 14 → **12** | 100.00% → **99.98%** | €1,513k → **€1,634k** |
 | 13 | 58.6% → **64.5%** | 17 → **15** | 100.00% → **99.97%** | €1,432k → **€1,560k** |
+
+## Held-out sites (run once)
+
+3 simulated sites of 14 days, each 304 nodes of 8 GPUs across six clusters, about 52 reservation requests and 170 self-serve organisations. Numbers are the mean per site.
+
+| | As found | Control plane | Lend all idle | No lending | No reclaim | No rebalancing | Manual quotas | Approve all quotas | First come first served |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| **GPU utilisation** (node-hours doing work) | 67.9% | **72.2%** | 77.6% | 69.0% | 72.1% | 72.4% | 72.0% | 76.7% | 72.2% |
+| Reserved nodes sitting idle (node-hours) | 18,142 | **12,932** | 3,725 | 18,112 | 13,158 | 11,283 | 12,932 | 12,932 | 12,932 |
+| Idle reserved nodes lent to preemptible jobs (node-hours) | 0 | **5,202** | 14,972 | 0 | 6,593 | 5,154 | 5,202 | 5,202 | 5,202 |
+| Reservation requests turned away | 20.0 | **18.3** | 18.3 | 18.3 | 18.3 | 19.7 | 18.3 | 18.3 | 18.3 |
+| Placed in another region of the same GPU type | 0.0 | **4.7** | 4.7 | 4.7 | 4.7 | 0.0 | 4.7 | 4.7 | 4.7 |
+| Reserved use there when the customer needed it | 100.000% | **99.927%** | 98.111% | 100.000% | 99.926% | 99.941% | 99.927% | 99.927% | 99.927% |
+| Reservations short of nodes at least once | 0.0 | **13.7** | 31.0 | 0.0 | 13.7 | 13.0 | 13.7 | 13.7 | 13.7 |
+| Unused reservations released after a notice | 0.0 | **1.7** | 1.7 | 1.7 | 0.0 | 2.0 | 1.7 | 1.7 | 1.7 |
+| Customers who came back to a released reservation | 0.0 | **0.0** | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
+| Preemptible node-hours taken back for reservations | 0 | **127** | 583 | 0 | 129 | 130 | 127 | 127 | 127 |
+| Self-serve demand served | 55.8% | **60.1%** | 67.8% | 55.8% | 60.3% | 62.4% | 59.7% | 59.8% | 59.3% |
+| Fairness on contested capacity (Jain, 1 = equal) | 0.54 | **0.77** | 0.84 | 0.73 | 0.77 | 0.78 | 0.77 | 0.82 | 0.56 |
+| Quota decision time, p90 (hours) | 65.8 | **6.9** | 6.9 | 6.9 | 6.9 | 6.9 | 65.8 | 0.0 | 6.9 |
+| Quota requests decided without a person | 0% | **80%** | 80% | 80% | 80% | 80% | 0% | 100% | 80% |
+| Quota increases granted to abusive organisations | 1.7 | **1.7** | 1.7 | 1.7 | 1.7 | 1.7 | 1.7 | 40.0 | 1.7 |
+| Legitimate quota requests denied | 9.7 | **0.7** | 0.7 | 0.7 | 0.7 | 0.7 | 9.7 | 0.0 | 0.7 |
+| GPU node-hours nobody paid for | 6,348 | **6,085** | 6,862 | 5,496 | 6,127 | 6,464 | 6,109 | 10,343 | 6,532 |
+| **Revenue** (placeholder prices) | €1,604k | **€1,734k** | €1,846k | €1,669k | €1,732k | €1,707k | €1,728k | €1,740k | €1,724k |
+
+| Saga variant (600 scenarios each) | Scenarios with a broken invariant | What broke |
+|---|---:|---|
+| Full saga: version checks, Idempotency-Key, outbox, inbox | **0** | nothing |
+| Without version checks (last writer wins) | 365 | confirmed with no capacity held (320), more promised than the cluster has (160), quota usage wrong (125), two reservations for one request (115), capacity held for a dead reservation (19), never finished (3) |
+| Without the Idempotency-Key | 147 | two reservations for one request (147) |
+| Without the outbox (commit, then send) | 367 | never finished (367) |
+| Without the inbox (no de-duplication) | 386 | quota usage wrong (329), confirmed with no capacity held (153), capacity held for a dead reservation (42) |
+
+| Gate | Value | Limit | |
+|---|---:|---:|---|
+| GPU utilisation over the as-is, points | 4.314 | ≥ 4 | pass |
+| Reservation requests turned away, ratio to the as-is | 0.9167 | ≤ 0.85 | **FAIL** |
+| Reserved use that was there when the customer needed it | 0.9993 | ≥ 0.999 | pass |
+| Customers who came back to a released reservation, per site | 0 | ≤ 1 | pass |
+| Revenue, ratio to the as-is | 1.081 | ≥ 1.05 | pass |
+| Quota increases granted to abusive organisations, ratio to the as-is | 1 | ≤ 1.5 | pass |
+| Quota decision time, p90 hours | 6.9 | ≤ 12 | pass |
+| Fairness on contested capacity (Jain) | 0.7657 | ≥ 0.75 | pass |
+| Lab scenarios with a broken invariant, full saga | 0 | ≤ 0 | pass |
+| Fewest broken scenarios with one safeguard removed | 147 | ≥ 1 | pass |
+
+| Site | Utilisation (as found → plane) | Turned away | Reserved use met | Revenue |
+|---|---:|---:|---:|---:|
+| 5101 | 65.6% → **68.2%** | 21 → **18** | 100.00% → **99.91%** | €1,590k → **€1,674k** |
+| 5102 | 70.7% → **75.7%** | 21 → **19** | 100.00% → **99.93%** | €1,609k → **€1,773k** |
+| 5103 | 67.5% → **72.8%** | 18 → **18** | 100.00% → **99.94%** | €1,613k → **€1,755k** |

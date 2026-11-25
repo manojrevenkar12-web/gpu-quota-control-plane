@@ -472,7 +472,478 @@
   ],
   "days": 14
  },
- "heldout": null,
+ "heldout": {
+  "designs": {
+   "as_is": {
+    "gpu_utilisation": 0.67931,
+    "idle_reserved_node_h": 18142.16667,
+    "lent_node_h": 0.0,
+    "reservations_rejected": 20.0,
+    "moved_to_other_region": 0.0,
+    "sla_short_share": 0.0,
+    "reservations_short": 0.0,
+    "reclaimed": 0.0,
+    "wrongful_reclaims": 0.0,
+    "preempted_node_h": 0.0,
+    "legit_served_share": 0.55754,
+    "jain_contested": 0.544,
+    "quota_decision_p90_h": 65.825,
+    "auto_decision_rate": 0.0,
+    "abusive_approved": 1.66667,
+    "legit_denied": 9.66667,
+    "unpaid_node_h": 6347.775,
+    "revenue": 1603923.4,
+    "reserved_used_node_h": 28862.58333,
+    "ondemand_served_node_h": 40524.41667,
+    "abusive_served_node_h": 7053.08333,
+    "capacity_node_h": 102144.0,
+    "reservations_requested": 52.0,
+    "quota_decision_p50_h": 53.16667,
+    "sla_short_node_h": 0.0
+   },
+   "platform": {
+    "gpu_utilisation": 0.72245,
+    "idle_reserved_node_h": 12932.16667,
+    "lent_node_h": 5202.16667,
+    "reservations_rejected": 18.33333,
+    "moved_to_other_region": 4.66667,
+    "sla_short_share": 0.00073,
+    "reservations_short": 13.66667,
+    "reclaimed": 1.66667,
+    "wrongful_reclaims": 0.0,
+    "preempted_node_h": 127.33333,
+    "legit_served_share": 0.60135,
+    "jain_contested": 0.76574,
+    "quota_decision_p90_h": 6.9,
+    "auto_decision_rate": 0.80115,
+    "abusive_approved": 1.66667,
+    "legit_denied": 0.66667,
+    "unpaid_node_h": 6084.675,
+    "revenue": 1734263.3,
+    "reserved_used_node_h": 30893.41667,
+    "ondemand_served_node_h": 42900.33333,
+    "abusive_served_node_h": 6760.75,
+    "capacity_node_h": 102144.0,
+    "reservations_requested": 52.0,
+    "quota_decision_p50_h": 0.0,
+    "sla_short_node_h": 22.08333
+   },
+   "lend_naive": {
+    "gpu_utilisation": 0.77576,
+    "idle_reserved_node_h": 3724.83333,
+    "lent_node_h": 14971.58333,
+    "reservations_rejected": 18.33333,
+    "moved_to_other_region": 4.66667,
+    "sla_short_share": 0.01889,
+    "reservations_short": 31.0,
+    "reclaimed": 1.66667,
+    "wrongful_reclaims": 0.0,
+    "preempted_node_h": 583.0,
+    "legit_served_share": 0.67777,
+    "jain_contested": 0.84075,
+    "quota_decision_p90_h": 6.9,
+    "auto_decision_rate": 0.80115,
+    "abusive_approved": 1.66667,
+    "legit_denied": 0.66667,
+    "unpaid_node_h": 6861.75,
+    "revenue": 1846313.5,
+    "reserved_used_node_h": 30893.41667,
+    "ondemand_served_node_h": 48346.16667,
+    "abusive_served_node_h": 7624.16667,
+    "capacity_node_h": 102144.0,
+    "reservations_requested": 52.0,
+    "quota_decision_p50_h": 0.0,
+    "sla_short_node_h": 584.16667
+   },
+   "no_lending": {
+    "gpu_utilisation": 0.69008,
+    "idle_reserved_node_h": 18112.25,
+    "lent_node_h": 0.0,
+    "reservations_rejected": 18.33333,
+    "moved_to_other_region": 4.66667,
+    "sla_short_share": 0.0,
+    "reservations_short": 0.0,
+    "reclaimed": 1.66667,
+    "wrongful_reclaims": 0.0,
+    "preempted_node_h": 0.0,
+    "legit_served_share": 0.55773,
+    "jain_contested": 0.72968,
+    "quota_decision_p90_h": 6.9,
+    "auto_decision_rate": 0.80115,
+    "abusive_approved": 1.66667,
+    "legit_denied": 0.66667,
+    "unpaid_node_h": 5495.55,
+    "revenue": 1669058.3,
+    "reserved_used_node_h": 30893.41667,
+    "ondemand_served_node_h": 39594.33333,
+    "abusive_served_node_h": 6106.16667,
+    "capacity_node_h": 102144.0,
+    "reservations_requested": 52.0,
+    "quota_decision_p50_h": 0.0,
+    "sla_short_node_h": 0.0
+   },
+   "no_reclaim": {
+    "gpu_utilisation": 0.72097,
+    "idle_reserved_node_h": 13158.5,
+    "lent_node_h": 6593.08333,
+    "reservations_rejected": 18.33333,
+    "moved_to_other_region": 4.66667,
+    "sla_short_share": 0.00074,
+    "reservations_short": 13.66667,
+    "reclaimed": 0.0,
+    "wrongful_reclaims": 0.0,
+    "preempted_node_h": 128.91667,
+    "legit_served_share": 0.60293,
+    "jain_contested": 0.76935,
+    "quota_decision_p90_h": 6.9,
+    "auto_decision_rate": 0.80115,
+    "abusive_approved": 1.66667,
+    "legit_denied": 0.66667,
+    "unpaid_node_h": 6126.975,
+    "revenue": 1732297.1,
+    "reserved_used_node_h": 30608.66667,
+    "ondemand_served_node_h": 43034.08333,
+    "abusive_served_node_h": 6807.75,
+    "capacity_node_h": 102144.0,
+    "reservations_requested": 52.0,
+    "quota_decision_p50_h": 0.0,
+    "sla_short_node_h": 22.08333
+   },
+   "no_rebalance": {
+    "gpu_utilisation": 0.72376,
+    "idle_reserved_node_h": 11283.33333,
+    "lent_node_h": 5153.58333,
+    "reservations_rejected": 19.66667,
+    "moved_to_other_region": 0.0,
+    "sla_short_share": 0.00059,
+    "reservations_short": 13.0,
+    "reclaimed": 2.0,
+    "wrongful_reclaims": 0.0,
+    "preempted_node_h": 130.33333,
+    "legit_served_share": 0.62362,
+    "jain_contested": 0.78302,
+    "quota_decision_p90_h": 6.9,
+    "auto_decision_rate": 0.80115,
+    "abusive_approved": 1.66667,
+    "legit_denied": 0.66667,
+    "unpaid_node_h": 6463.5,
+    "revenue": 1707471.0,
+    "reserved_used_node_h": 29264.91667,
+    "ondemand_served_node_h": 44663.0,
+    "abusive_served_node_h": 7181.66667,
+    "capacity_node_h": 102144.0,
+    "reservations_requested": 52.0,
+    "quota_decision_p50_h": 0.0,
+    "sla_short_node_h": 17.25
+   },
+   "manual_quotas": {
+    "gpu_utilisation": 0.72033,
+    "idle_reserved_node_h": 12932.16667,
+    "lent_node_h": 5202.16667,
+    "reservations_rejected": 18.33333,
+    "moved_to_other_region": 4.66667,
+    "sla_short_share": 0.00073,
+    "reservations_short": 13.66667,
+    "reclaimed": 1.66667,
+    "wrongful_reclaims": 0.0,
+    "preempted_node_h": 127.33333,
+    "legit_served_share": 0.5973,
+    "jain_contested": 0.76754,
+    "quota_decision_p90_h": 65.825,
+    "auto_decision_rate": 0.0,
+    "abusive_approved": 1.66667,
+    "legit_denied": 9.66667,
+    "unpaid_node_h": 6109.05,
+    "revenue": 1728492.3,
+    "reserved_used_node_h": 30893.41667,
+    "ondemand_served_node_h": 42684.25,
+    "abusive_served_node_h": 6787.83333,
+    "capacity_node_h": 102144.0,
+    "reservations_requested": 52.0,
+    "quota_decision_p50_h": 53.16667,
+    "sla_short_node_h": 22.08333
+   },
+   "auto_approve_all": {
+    "gpu_utilisation": 0.76665,
+    "idle_reserved_node_h": 12932.16667,
+    "lent_node_h": 5202.16667,
+    "reservations_rejected": 18.33333,
+    "moved_to_other_region": 4.66667,
+    "sla_short_share": 0.00073,
+    "reservations_short": 13.66667,
+    "reclaimed": 1.66667,
+    "wrongful_reclaims": 0.0,
+    "preempted_node_h": 127.33333,
+    "legit_served_share": 0.59763,
+    "jain_contested": 0.81677,
+    "quota_decision_p90_h": 0.0,
+    "auto_decision_rate": 1.0,
+    "abusive_approved": 40.0,
+    "legit_denied": 0.0,
+    "unpaid_node_h": 10342.725,
+    "revenue": 1740434.1,
+    "reserved_used_node_h": 30893.41667,
+    "ondemand_served_node_h": 47415.5,
+    "abusive_served_node_h": 11491.91667,
+    "capacity_node_h": 102144.0,
+    "reservations_requested": 52.0,
+    "quota_decision_p50_h": 0.0,
+    "sla_short_node_h": 22.08333
+   },
+   "fifo_allocation": {
+    "gpu_utilisation": 0.72245,
+    "idle_reserved_node_h": 12932.16667,
+    "lent_node_h": 5202.16667,
+    "reservations_rejected": 18.33333,
+    "moved_to_other_region": 4.66667,
+    "sla_short_share": 0.00073,
+    "reservations_short": 13.66667,
+    "reclaimed": 1.66667,
+    "wrongful_reclaims": 0.0,
+    "preempted_node_h": 127.33333,
+    "legit_served_share": 0.59347,
+    "jain_contested": 0.56271,
+    "quota_decision_p90_h": 6.9,
+    "auto_decision_rate": 0.80115,
+    "abusive_approved": 1.66667,
+    "legit_denied": 0.66667,
+    "unpaid_node_h": 6532.2,
+    "revenue": 1723522.7,
+    "reserved_used_node_h": 30893.41667,
+    "ondemand_served_node_h": 42900.33333,
+    "abusive_served_node_h": 7258.0,
+    "capacity_node_h": 102144.0,
+    "reservations_requested": 52.0,
+    "quota_decision_p50_h": 0.0,
+    "sla_short_node_h": 22.08333
+   }
+  },
+  "labels": {
+   "as_is": "As found",
+   "platform": "Control plane",
+   "lend_naive": "Lend all idle",
+   "no_lending": "No lending",
+   "no_reclaim": "No reclaim",
+   "no_rebalance": "No rebalancing",
+   "manual_quotas": "Manual quotas",
+   "auto_approve_all": "Approve all quotas",
+   "fifo_allocation": "First come first served"
+  },
+  "descriptions": {
+   "as_is": "As found: reservations held idle, unused ones kept, no moves, every quota request to a person, first come first served",
+   "platform": "The control plane: forecast-buffered lending, reclaim notices, rebalancing, scored quota requests, weighted fair share",
+   "lend_naive": "Lend every idle node, no forecast buffer",
+   "no_lending": "No lending of idle reserved nodes",
+   "no_reclaim": "Unused reservations kept to the end",
+   "no_rebalance": "No moves between regions",
+   "manual_quotas": "Every quota request to a person",
+   "auto_approve_all": "Every quota request approved without a check",
+   "fifo_allocation": "First come first served on contested capacity"
+  },
+  "faults": {
+   "scenarios": 600,
+   "variants": {
+    "platform": {
+     "scenarios_broken": 0,
+     "share_broken": 0.0,
+     "by_kind": {}
+    },
+    "no_cas": {
+     "scenarios_broken": 365,
+     "share_broken": 0.60833,
+     "by_kind": {
+      "duplicate": 115,
+      "orphan_hold": 19,
+      "oversold": 160,
+      "quota_drift": 125,
+      "stuck": 3,
+      "unbacked": 320
+     }
+    },
+    "no_idempotency": {
+     "scenarios_broken": 147,
+     "share_broken": 0.245,
+     "by_kind": {
+      "duplicate": 147
+     }
+    },
+    "no_outbox": {
+     "scenarios_broken": 367,
+     "share_broken": 0.61167,
+     "by_kind": {
+      "stuck": 367
+     }
+    },
+    "no_inbox": {
+     "scenarios_broken": 386,
+     "share_broken": 0.64333,
+     "by_kind": {
+      "orphan_hold": 42,
+      "quota_drift": 329,
+      "unbacked": 153
+     }
+    }
+   }
+  },
+  "gates": {
+   "platform": [
+    {
+     "gate": "GPU utilisation over the as-is, points",
+     "value": 4.31425,
+     "limit": 4.0,
+     "kind": "min",
+     "pass": true
+    },
+    {
+     "gate": "Reservation requests turned away, ratio to the as-is",
+     "value": 0.91667,
+     "limit": 0.85,
+     "kind": "max",
+     "pass": false
+    },
+    {
+     "gate": "Reserved use that was there when the customer needed it",
+     "value": 0.99927,
+     "limit": 0.999,
+     "kind": "min",
+     "pass": true
+    },
+    {
+     "gate": "Customers who came back to a released reservation, per site",
+     "value": 0.0,
+     "limit": 1.0,
+     "kind": "max",
+     "pass": true
+    },
+    {
+     "gate": "Revenue, ratio to the as-is",
+     "value": 1.08126,
+     "limit": 1.05,
+     "kind": "min",
+     "pass": true
+    },
+    {
+     "gate": "Quota increases granted to abusive organisations, ratio to the as-is",
+     "value": 1.0,
+     "limit": 1.5,
+     "kind": "max",
+     "pass": true
+    },
+    {
+     "gate": "Quota decision time, p90 hours",
+     "value": 6.9,
+     "limit": 12.0,
+     "kind": "max",
+     "pass": true
+    },
+    {
+     "gate": "Fairness on contested capacity (Jain)",
+     "value": 0.76574,
+     "limit": 0.75,
+     "kind": "min",
+     "pass": true
+    },
+    {
+     "gate": "Lab scenarios with a broken invariant, full saga",
+     "value": 0.0,
+     "limit": 0.0,
+     "kind": "max",
+     "pass": true
+    },
+    {
+     "gate": "Fewest broken scenarios with one safeguard removed",
+     "value": 147.0,
+     "limit": 1.0,
+     "kind": "min",
+     "pass": true
+    }
+   ],
+   "platform_pass": false
+  },
+  "per_seed": [
+   {
+    "seed": 5101,
+    "as_is": {
+     "gpu_utilisation": 0.65584,
+     "reservations_rejected": 21.0,
+     "sla_short_share": 0.0,
+     "revenue": 1589859.6,
+     "quota_decision_p90_h": 68.6,
+     "jain_contested": 0.5559
+    },
+    "platform": {
+     "gpu_utilisation": 0.68195,
+     "reservations_rejected": 18.0,
+     "sla_short_share": 0.00089,
+     "revenue": 1673919.9,
+     "quota_decision_p90_h": 7.275,
+     "jain_contested": 0.7981
+    }
+   },
+   {
+    "seed": 5102,
+    "as_is": {
+     "gpu_utilisation": 0.70704,
+     "reservations_rejected": 21.0,
+     "sla_short_share": 0.0,
+     "revenue": 1608858.0,
+     "quota_decision_p90_h": 63.825,
+     "jain_contested": 0.55929
+    },
+    "platform": {
+     "gpu_utilisation": 0.75714,
+     "reservations_rejected": 19.0,
+     "sla_short_share": 0.00069,
+     "revenue": 1773415.2,
+     "quota_decision_p90_h": 7.425,
+     "jain_contested": 0.75029
+    }
+   },
+   {
+    "seed": 5103,
+    "as_is": {
+     "gpu_utilisation": 0.67504,
+     "reservations_rejected": 18.0,
+     "sla_short_share": 0.0,
+     "revenue": 1613052.6,
+     "quota_decision_p90_h": 65.05,
+     "jain_contested": 0.51681
+    },
+    "platform": {
+     "gpu_utilisation": 0.72825,
+     "reservations_rejected": 18.0,
+     "sla_short_share": 0.0006,
+     "revenue": 1755454.8,
+     "quota_decision_p90_h": 6.0,
+     "jain_contested": 0.74882
+    }
+   }
+  ],
+  "sites": [
+   {
+    "seed": 5101,
+    "reservations": 52,
+    "requests": 329,
+    "orgs": 170,
+    "nodes": 304
+   },
+   {
+    "seed": 5102,
+    "reservations": 52,
+    "requests": 336,
+    "orgs": 170,
+    "nodes": 304
+   },
+   {
+    "seed": 5103,
+    "reservations": 52,
+    "requests": 334,
+    "orgs": 170,
+    "nodes": 304
+   }
+  ],
+  "days": 14
+ },
  "fault_labels": {
   "platform": "Full saga: version checks, Idempotency-Key, outbox, inbox",
   "no_cas": "Without version checks (last writer wins)",
