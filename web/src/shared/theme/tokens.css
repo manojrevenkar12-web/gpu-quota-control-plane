@@ -1,0 +1,57 @@
+/* Cold-aisle palette: cool greys for the floor, three validated series colours for where node-hours go
+   (scripts/validate_palette.js: light on #F7F9FA, dark on #141B22). Status colours are kept apart. */
+:root {
+  --font: "Barlow Semi Condensed", system-ui, sans-serif;
+
+  --bg: #eceff2;
+  --panel: #f7f9fa;
+  --ink: #142029;
+  --ink-2: #44525f;
+  --muted: #6b7885;
+  --rule: #d2d9e0;
+  --focus: #4258d6;
+
+  --s-reserved: #4258d6; /* reservations in use */
+  --s-selfserve: #1f9e8a; /* self-serve jobs that pay, including on lent nodes */
+  --s-abuse: #d9822b; /* self-serve jobs nobody pays for */
+  --s-idle: #7b8794; /* reserved and idle: drawn as hatching, never as a fourth hue */
+  --s-empty: #dfe5ea;
+
+  --good: #2b7a4b;
+  --bad: #b3261e;
+
+  --r-sm: 4px;
+  --r-md: 10px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 20px;
+  --space-5: 32px;
+  --space-6: 56px;
+
+  --t-xs: 0.8rem;
+  --t-sm: 0.92rem;
+  --t-md: 1.06rem;
+  --t-lg: 1.42rem;
+  --t-xl: 2.1rem;
+  --t-hero: clamp(2.6rem, 6vw, 4.4rem);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f151b;
+    --panel: #141b22;
+    --ink: #e6ebf0;
+    --ink-2: #b2bdc8;
+    --muted: #8796a4;
+    --rule: #2a3540;
+    --focus: #8a9af0;
+    --s-reserved: #5e73e0;
+    --s-selfserve: #1f9585;
+    --s-abuse: #cf7c2c;
+    --s-idle: #8796a4;
+    --s-empty: #222c36;
+    --good: #5fbf86;
+    --bad: #ef7a70;
+  }
+}

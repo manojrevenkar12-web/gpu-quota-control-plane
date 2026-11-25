@@ -1,0 +1,5 @@
+# dev: every design, every change. heldout: run once behind reports/heldout.lock (ADR 0006).
+dev: [11, 12, 13]
+heldout: [5101, 5102, 5103]
+faults_dev: 300                   # interleavings per variant in the crash and concurrency lab
+faults_heldout: 600

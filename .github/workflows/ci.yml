@@ -1,0 +1,77 @@
+name: ci
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  python:
+    runs-on: ubuntu-24.04
+    strategy:
+      matrix:
+        python: ["3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0 # the held-out check reads the lock's history
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: pip install -e ".[dev]"
+      - name: lint
+        run: ruff check . && ruff format --check .
+      - name: types
+        run: mypy src tests
+      - name: tests
+        run: pytest -q
+      - name: reports are generated, not edited
+        if: matrix.python == '3.13'
+        run: |
+          python -m gqc.cli report
+          git diff --exit-code -- REPORT.md README.md web/public/data/report.json
+      - name: the committed development report passes its gates
+        run: python -m gqc.cli gate dev
+      - name: the held-out run happened once
+        run: |
+          if [ -f reports/heldout.lock ]; then
+            n=$(git log --format=%H --no-renames -- reports/heldout.lock | wc -l)
+            echo "heldout.lock commits: $n"; test "$n" -eq 1
+            python -m gqc.cli heldout && exit 1 || test $? -eq 3
+          fi
+      - name: the development study reruns and still passes
+        if: matrix.python == '3.13'
+        run: |
+          python -m gqc.cli dev
+          python -m gqc.cli gate dev
+
+  console:
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm test
+      - run: npm run build
+
+  container:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - run: docker build -t gqc .
+      - name: the API reserves, replays and refuses
+        run: |
+          docker run -d -p 8080:8080 --name gqc gqc
+          for i in $(seq 1 30); do curl -fs localhost:8080/healthz && break; sleep 1; done
+          curl -fs -X PUT localhost:8080/v1/capacity/eu-north1-h200 -H 'content-type: application/json' -d '{"nodes": 10}'
+          curl -fs -X PUT localhost:8080/v1/quotas/acme/eu-north1-h200 -H 'content-type: application/json' -d '{"nodes": 8}'
+          a=$(curl -fs -X POST localhost:8080/v1/reservations -H 'content-type: application/json' -H 'Idempotency-Key: ci-order-1' -d '{"org": "acme", "cluster": "eu-north1-h200", "nodes": 4}')
+          b=$(curl -fs -X POST localhost:8080/v1/reservations -H 'content-type: application/json' -H 'Idempotency-Key: ci-order-1' -d '{"org": "acme", "cluster": "eu-north1-h200", "nodes": 4}')
+          echo "$a"; test "$a" = "$b"; echo "$a" | grep -q '"state":"confirmed"'
+          curl -fs localhost:8080/v1/capacity | grep -q '"free":6'

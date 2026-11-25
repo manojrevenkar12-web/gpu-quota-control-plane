@@ -1,0 +1,13 @@
+# Release gates, set on the development sites before the held-out run. Never loosened after it.
+platform:
+  utilisation_over_as_is_pts_min: 4.0         # GPU node-hours doing work, of all node-hours
+  rejected_vs_as_is_max: 0.85                 # reservation requests turned away, ratio to today
+  reserved_use_met_min: 0.999                 # node-hours a customer used of their reservation that were there
+  wrongful_reclaims_max: 1.0                  # per site: a customer coming back to a reservation already released
+  revenue_vs_as_is_min: 1.05
+  abusive_approved_vs_as_is_max: 1.5          # quota increases granted to abusive organisations (+1 to both)
+  quota_decision_p90_hours_max: 12.0          # the as-is waits for office hours: about two days
+  jain_contested_min: 0.75                    # fairness on contested capacity, legitimate organisations
+faults:
+  platform_scenarios_broken_max: 0            # any broken invariant after the crash and concurrency lab
+  each_safeguard_matters: true                # every variant with a safeguard removed must break some scenario

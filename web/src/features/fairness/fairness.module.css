@@ -1,0 +1,38 @@
+.grid {
+  display: grid;
+  gap: var(--space-3);
+}
+.row {
+  display: grid;
+  grid-template-columns: minmax(160px, 1.2fr) 3fr minmax(200px, 1.3fr);
+  align-items: center;
+  gap: var(--space-3);
+}
+.label {
+  color: var(--ink-2);
+}
+.track {
+  height: 14px;
+  background: var(--s-empty);
+  border-radius: 3px;
+  position: relative;
+}
+.fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: var(--s-selfserve);
+  border-radius: 3px;
+}
+.value {
+  font-weight: 600;
+}
+.sub {
+  font-weight: 400;
+  color: var(--muted);
+}
+@media (max-width: 640px) {
+  .row {
+    grid-template-columns: 1fr;
+    gap: var(--space-1);
+  }
+}

@@ -1,0 +1,31 @@
+# Every design runs on the same sites with the same luck. Ablations each turn off one part of the platform.
+designs:
+  as_is:
+    label: "As found: reservations held idle, unused ones kept, no moves, every quota request to a person, first come first served"
+    switches: { lending: "off", reclaim_unused: false, rebalance: false, quotas: manual, allocation: fifo }
+  platform:
+    label: "The control plane: forecast-buffered lending, reclaim notices, rebalancing, scored quota requests, weighted fair share"
+    switches: { lending: buffered, reclaim_unused: true, rebalance: true, quotas: scored, allocation: fair }
+  lend_naive:
+    label: "Lend every idle node, no forecast buffer"
+    switches: { lending: naive, reclaim_unused: true, rebalance: true, quotas: scored, allocation: fair }
+  no_lending:
+    label: "No lending of idle reserved nodes"
+    switches: { lending: "off", reclaim_unused: true, rebalance: true, quotas: scored, allocation: fair }
+  no_reclaim:
+    label: "Unused reservations kept to the end"
+    switches: { lending: buffered, reclaim_unused: false, rebalance: true, quotas: scored, allocation: fair }
+  no_rebalance:
+    label: "No moves between regions"
+    switches: { lending: buffered, reclaim_unused: true, rebalance: false, quotas: scored, allocation: fair }
+  manual_quotas:
+    label: "Every quota request to a person"
+    switches: { lending: buffered, reclaim_unused: true, rebalance: true, quotas: manual, allocation: fair }
+  auto_approve_all:
+    label: "Every quota request approved without a check"
+    switches: { lending: buffered, reclaim_unused: true, rebalance: true, quotas: approve_all, allocation: fair }
+  fifo_allocation:
+    label: "First come first served on contested capacity"
+    switches: { lending: buffered, reclaim_unused: true, rebalance: true, quotas: scored, allocation: fifo }
+main: [as_is, platform]
+ablations: [lend_naive, no_lending, no_reclaim, no_rebalance, manual_quotas, auto_approve_all, fifo_allocation]

@@ -1,0 +1,125 @@
+.wrap {
+  display: grid;
+  gap: var(--space-4);
+}
+.legend {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  color: var(--ink-2);
+  font-size: var(--t-sm);
+}
+.legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  display: inline-block;
+}
+.row {
+  margin: 0;
+  display: grid;
+  gap: var(--space-2);
+}
+.rowHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-3);
+}
+.rowLabel {
+  font-weight: 500;
+  color: var(--ink-2);
+}
+.rowFigure {
+  font-size: var(--t-xl);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.track {
+  display: flex;
+  gap: 2px;
+  height: 64px;
+  background: var(--panel);
+  border-radius: var(--r-sm);
+}
+.seg {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 2px;
+  transform-origin: left center;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  cursor: default;
+}
+.seg:first-child {
+  border-radius: var(--r-sm) 0 0 var(--r-sm);
+}
+.seg:last-child {
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+}
+.segText {
+  padding: 0 var(--space-2) var(--space-1);
+  font-size: var(--t-sm);
+  font-weight: 600;
+  color: #fff;
+}
+.reserved {
+  background: var(--s-reserved);
+}
+.selfserve {
+  background: var(--s-selfserve);
+}
+.abuse {
+  background: var(--s-abuse);
+}
+.abuse .segText {
+  color: var(--ink);
+}
+.idle {
+  background: repeating-linear-gradient(45deg, var(--s-idle) 0 2px, transparent 2px 7px);
+  box-shadow: inset 0 0 0 1px var(--s-idle);
+}
+.idle .segText,
+.empty .segText {
+  color: var(--ink);
+}
+.empty {
+  background: var(--s-empty);
+}
+.tip {
+  min-height: 1.4em;
+  font-size: var(--t-sm);
+  color: var(--ink-2);
+}
+.compare {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  align-items: center;
+  color: var(--ink-2);
+  font-size: var(--t-sm);
+}
+.chip {
+  border: 1px solid var(--rule);
+  background: transparent;
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 2px var(--space-3);
+  cursor: pointer;
+  font-size: var(--t-sm);
+}
+.chip[aria-pressed="true"] {
+  background: var(--ink);
+  color: var(--panel);
+  border-color: var(--ink);
+}

@@ -1,0 +1,66 @@
+# The simulated GPU cloud and its hidden truth: how much of a reservation a customer really uses, when they come
+# back for it, which quota requests are abusive. Only world/ and the evaluation (sim/, lab/) read this file.
+
+common: &common
+  days: 14
+  step_minutes: 15
+  clusters:                                  # capacity in nodes of 8 GPUs
+    eu-north1-h100: { region: eu-north1, gpu: H100, nodes: 64 }
+    eu-west1-h100: { region: eu-west1, gpu: H100, nodes: 40 }
+    eu-north1-h200: { region: eu-north1, gpu: H200, nodes: 48 }
+    eu-west1-h200: { region: eu-west1, gpu: H200, nodes: 64 }
+    us-central1-b200: { region: us-central1, gpu: B200, nodes: 56 }
+    eu-north1-b200: { region: eu-north1, gpu: B200, nodes: 32 }
+  reservations:
+    count: 46                                # contracts arriving over the run
+    nodes_lognormal: [1.9, 0.7]              # median about 7 nodes
+    duration_days: [5, 14]
+    arrive_within_days: 9
+    region_flexible_share: 0.35              # will take the same GPU type in another region
+    never_used_share: 0.06                   # reserved, then never started
+    tiers: { strategic: 0.25, standard: 0.5, startup: 0.25 }
+    profiles: { steady: 0.30, diurnal: 0.30, bursty: 0.25, ramp: 0.15 }
+  ondemand:
+    orgs: 140                                # self-serve organisations on preemptible capacity
+    abusive_share: 0.07                      # sign-up fraud and crypto mining
+    requests_per_day: 18                     # quota increase requests
+    demand_nodes_lognormal: [0.3, 0.7]
+    abusive_unpaid_share: 0.9                # what an abusive org never pays
+  prices_per_node_hour: { reserved: 18.0, ondemand: 24.0 }   # placeholders (8 GPUs per node)
+  review: { minutes: 20, analysts_minutes_per_day: 480, accuracy: 0.95 }
+  notice_keep_prob: { intends_to_use: 0.9, never_uses: 0.15 }   # a customer answering "keep it" to a reclaim notice
+  late_start_days: [1, 4]                    # some customers start days after their reservation does
+
+dev:
+  <<: *common
+
+heldout:
+  <<: *common
+  reservations:
+    count: 52
+    nodes_lognormal: [2.0, 0.8]
+    duration_days: [4, 14]
+    arrive_within_days: 9
+    region_flexible_share: 0.25
+    never_used_share: 0.10
+    tiers: { strategic: 0.3, standard: 0.45, startup: 0.25 }
+    profiles: { steady: 0.20, diurnal: 0.25, bursty: 0.40, ramp: 0.15 }   # burstier customers
+  ondemand:
+    orgs: 170
+    abusive_share: 0.11
+    requests_per_day: 24
+    demand_nodes_lognormal: [0.4, 0.7]
+    abusive_unpaid_share: 0.9
+
+tiny:
+  <<: *common
+  days: 4
+  reservations:
+    count: 10
+    nodes_lognormal: [2.0, 0.6]
+    duration_days: [2, 4]
+    arrive_within_days: 2
+    region_flexible_share: 0.4
+    never_used_share: 0.1
+    tiers: { strategic: 0.3, standard: 0.4, startup: 0.3 }
+    profiles: { steady: 0.25, diurnal: 0.25, bursty: 0.25, ramp: 0.25 }
